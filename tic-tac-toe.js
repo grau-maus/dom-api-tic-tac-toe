@@ -1,6 +1,7 @@
 let squareValues = [];
 squareValues.length = 9;
 let gameStatus = '';
+let announcementStatus= false;
 
 function checkGameStatus() {
     for (let j = 0; j < squareValues.length; j += 3) {
@@ -26,7 +27,7 @@ function checkGameStatus() {
 
     if (gameStatus) {
         let announcement = document.getElementById("game-status");
-
+        announcementStatus = true;
         announcement.innerText = `Winner: ${gameStatus}`;
     } else {
         for (let i = 0; i < squareValues.length; i++) {
@@ -36,7 +37,7 @@ function checkGameStatus() {
         }
 
         let announcement = document.getElementById("game-status");
-
+         announcementStatus = true;
         announcement.innerText = `Tie!`;
     }
 }
@@ -44,6 +45,8 @@ function checkGameStatus() {
 window.addEventListener("DOMContentLoaded", () => {
     let nextPlayer = false;
     const grid = document.getElementById("tic-tac-toe-board");
+    let newGame = document.querySelectorAll("button");
+    newGame[0].setAttribute("id", "new-game")
 
     grid.addEventListener("click", event => {
         if (event.target.id !== event.currentTarget.id) {
@@ -71,4 +74,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
         checkGameStatus();
     })
+   newGame[0].addEventListener("click", event => {
+    if (announcementStatus) {
+        newGame[0].disabled = false;
+    } else {
+        newGame[0].disabled = true;
+    }
+   })
+
 })
