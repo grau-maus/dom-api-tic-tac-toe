@@ -3,25 +3,19 @@ squareValues.length = 9;
 let gameStatus = '';
 
 function checkGameStatus() {
-
-    // debugger;
-
     for (let j = 0; j < squareValues.length; j += 3) {
-        if (squareValues[j] !== '' && squareValues[j] === squareValues[j + 1] && squareValues[j] === squareValues[j + 2]) {
+        if (squareValues[j] !== undefined && squareValues[j] === squareValues[j + 1] && squareValues[j] === squareValues[j + 2]) {
             gameStatus = squareValues[j];
-            console.log("winner:", gameStatus, Boolean(gameStatus));
             break;
         }
     }
 
     for (let i = 0; i < squareValues.length; i++) {
-        if (squareValues[i] !== '' && squareValues[i] === squareValues[i + 3] && squareValues[i] === squareValues[i + 6]) {
+        if (squareValues[i] !== undefined && squareValues[i] === squareValues[i + 3] && squareValues[i] === squareValues[i + 6]) {
             gameStatus = squareValues[i];
             break;
         }
     }
-
-
 
     if (squareValues[0] !== '' && squareValues[0] === squareValues[4] && squareValues[0] === squareValues[8]) {
         gameStatus = squareValues[0];
@@ -34,6 +28,16 @@ function checkGameStatus() {
         let announcement = document.getElementById("game-status");
 
         announcement.innerText = `Winner: ${gameStatus}`;
+    } else {
+        for (let i = 0; i < squareValues.length; i++) {
+            if (!squareValues[i]) {
+                return;
+            }
+        }
+
+        let announcement = document.getElementById("game-status");
+
+        announcement.innerText = `Tie!`;
     }
 }
 
