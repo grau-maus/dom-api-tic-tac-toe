@@ -202,7 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
             let aiChance = Math.floor(Math.random() * (max - min + 1) + min);
             let compare = Math.floor(Math.random() * (max - min + 1) + min);
 
-            if (5 === 5) {
+            if (aiChance === compare) {
                 nightmareMode = true;
                 localStorage.setItem("aiStatus", "true");
             }
